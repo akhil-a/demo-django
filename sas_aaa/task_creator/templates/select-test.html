@@ -1,0 +1,59 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<!--<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css'>-->
+
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="col-sm-3">-->
+<!--      -->
+<!--    </div>-->
+<!--    <div class="col-sm-3">-->
+<!--      <ul id="listTo" class="nav nav-pills nav-stacked"></ul>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <br />-->
+<!--  <div class="row">-->
+<!--  <div class="col-sm-3">-->
+<!--    <input type="text" id="hidden" class="form-control" readonly />-->
+<!--  </div>-->
+<!--    <div class="col-sm-3">-->
+<!--    <form action="/show/" method="post">{% csrf_token %}-->
+<!--    <input type="button" id="submit" value="Submit" class="btn btn-success" />-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</div>-->
+<form method='post'>
+{% csrf_token %}
+<!--{{ form.as_p }}-->
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {# uncomment to display field errors #}
+            {# {{ field.errors }} #}
+
+            {{ field.label_tag }} {{ field }}
+        </div>
+    {% endfor %}
+<p>
+    <input type="button" onclick='selectAll()' value="Select All"/>
+    <input type="button" onclick='UnSelectAll()' value="Unselect All"/>
+</p>
+    <input type='submit' value='submit'>
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <h2>{{ error|escape }}</h2>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+</form>
+
+{% endblock %}

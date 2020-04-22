@@ -1,0 +1,146 @@
+{% load static %}
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>SAS : Smart Automation Suite</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'task_creator/style.css' %}"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Raleway">
+		<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!--    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>-->
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+		<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+		<script  src="{% static 'task_creator/script.js' %}"></script>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="navbar">
+				<div class="navbar_left">
+					<div class="logo">
+						<a href="#">SAS</a>
+					</div>
+				</div>
+				<div class="navbar_right">
+					<div class="notifications">
+						<div class="icon_wrap"><i class="far fa-bell"></i><span class="notification-label notification-label-blue">12</span></div>
+						<div class="notification_dd">
+							<ul class="notification_ul">
+								<li class="success">
+									<a href="#">
+										<div class="notify_data">
+											<div class="title">
+												Lorem, ipsum dolor.
+											</div>
+											<div class="sub_title">
+												Lorem ipsum dolor sit amet consectetur.
+											</div>
+										</div>
+										<div class="notify_status">
+											<p>Success</p>
+										</div>
+									</a>
+								</li>
+								<li class="failed">
+									<a href="#">
+										<div class="notify_data">
+											<div class="title">
+												Lorem, ipsum dolor.
+											</div>
+											<div class="sub_title">
+												Lorem ipsum dolor sit amet consectetur.
+											</div>
+										</div>
+										<div class="notify_status">
+											<p>Failed</p>
+										</div>
+									</a>
+								</li>
+								<li class="success">
+									<a href="#">
+										<div class="notify_data">
+											<div class="title">
+												Lorem, ipsum dolor.
+											</div>
+											<div class="sub_title">
+												Lorem ipsum dolor sit amet consectetur.
+											</div>
+										</div>
+										<div class="notify_status">
+											<p>Success</p>
+										</div>
+									</a>
+								</li>
+								<li class="failed">
+									<a href="#">
+										<div class="notify_data">
+											<div class="title">
+												Lorem, ipsum dolor.
+											</div>
+											<div class="sub_title">
+												Lorem ipsum dolor sit amet consectetur.
+											</div>
+										</div>
+										<div class="notify_status">
+											<p>Failed</p>
+										</div>
+									</a>
+								</li>
+								<li class="success">
+									<a href="#">
+										<div class="notify_data">
+											<div class="title">
+												Lorem, ipsum dolor.
+											</div>
+											<div class="sub_title">
+												Lorem ipsum dolor sit amet consectetur.
+											</div>
+										</div>
+										<div class="notify_status">
+											<p>Success</p>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="profile">
+						<div class="icon_wrap">
+							<img src="{{ user.profile.get_photo_url }}" alt="profile_pic">
+							<span class="name">{{ user.first_name }}</span>
+							<i class="fas fa-chevron-down"></i>
+						</div>
+						<div class="profile_dd">
+							<ul class="profile_ul">
+								<li class="profile_li">
+									<a class="profile" href="#"><span class="picon"><i class="fas fa-user-alt"></i>
+									</span>Profile</a>
+									<div class="btn">My Account</div>
+								</li>
+								<li><a class="settings" href="#"><span class="picon"><i class="fas fa-cog"></i></span>Settings</a></li>
+								<li><a class="logout" href="/logout"><span class="picon"><i class="fas fa-sign-out-alt"></i></span>Logout</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="menu">
+			<div class="heading">
+				<img src="{% static 'task_creator/sas_logo.jpg' %}" alt="Smart Automation Suite">
+				<div class="info">
+					<h3><a href="/">SAS</a></h3>
+					<p>Smart Automation Suite</p>
+				</div>
+			</div>
+			<ul>
+				<li><a href="/dashboard/"><span class="fa fa-tachometer"></span>Dashboard</a></li>
+				<li><a href="/start-new-task/"><span class="fas fa-stream"></span>Create Test</a></li>
+				<li><a href="/track/"><span class="fas fa-tasks"></span>Track Test</a></li>
+			</ul>
+		</div>
+		<div class="content-area">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</body>
+</html>

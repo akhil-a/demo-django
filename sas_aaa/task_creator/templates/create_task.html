@@ -1,0 +1,173 @@
+{% extends 'home.html' %}
+{% block content %}
+<div class="container">
+	<div class="progress_bar">
+		<hr class="all_steps">
+		<hr class="current_steps">
+		<div class="step current" id="step1" data-step="1">
+			Step 1
+		</div>
+		<div class="step" id="step2" data-step="2">
+			Step 2
+		</div>
+		<div class="step" id="step3" data-step="3">
+			Step 3
+		</div>
+		<div class="step" id="step4" data-step="4">
+			Step 4
+		</div>
+		<div class="step" id="step5" data-step="5">
+			Step 5
+		</div>
+	</div>
+	<div id="blocks">
+		<div class="block" id="block1" style="left: 0%;">
+			<div class="wrap">
+				<h2>Get Started!</h2>
+				<p class="content-summary">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam imperdiet odio eleifend dictum semper.
+					Sed nisl nisi, imperdiet et lacus ut, ultricies consectetur nisl. In eu lectus eget sapien fermentum
+					commodo in laoreet lectus. Vestibulum et mollis augue, in lobortis lacus. Maecenas non turpis enim.
+					Nunc quis porta justo. Suspendisse vel pharetra nibh, quis iaculis ex. Nullam sagittis leo molestie
+					neque lacinia congue. Etiam quis risus non lacus semper accumsan sit amet et sapien. Morbi dictum
+					porta ante at luctus. Etiam finibus, mi et ultricies bibendum, quam felis faucibus ipsum, eu
+					fermentum augue orci ac lacus. Morbi lacus lorem, placerat sed sodales eu, feugiat sit amet tortor.
+				</p>
+				<br />
+				<div class="lower">
+					<div class="right">
+						<a onclick="step_process(1, 2)" class="btn"><span>Next</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="block" id="block2">
+			<form method="post" id="project_select_form">
+				{% csrf_token %}
+				<div class="wrap">
+					<h2>Select Project</h2>
+					<p class="content-summary">Fusce faucibus convallis velit quis ultrices. In feugiat est vitae erat aliquet rutrum.
+						Vivamus sed suscipit justo, at pulvinar eros. Nunc commodo felis quis risus blandit efficitur.
+						Nunc vehicula quis eros ac tristique. Ut efficitur commodo nulla, et ultricies erat consectetur vitae.
+					</p>
+					<div class="error-msg" id="prj-error"></div>
+					<br/>
+					<div align="center">
+						<div class="select">
+							{{ form.project_name }}
+						</div>
+					</div>
+					<br />
+					<div class="lower">
+						<div class="left">
+							<a onclick="step_process(2, 1, 'desc')" class="btn"><span>Prev</span></a>
+						</div>
+						<div class="right">
+							<button type="submit"  class="btn"><span>Next</span></button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="block" id="block3">
+			<form method="post" id="device_select_form">
+				{% csrf_token %}
+				<div class="wrap">
+					<h2>Select Device</h2>
+					<p class="content-summary">Select the device that you want to run on. Already running devices will not be listed. Multiple device selection and device type selection features are under development.
+					</p>
+					<div class="error-msg" id="device-error"></div>
+					<br/>
+					<div align="center">
+						<div class="select">
+							<select name="device_selection" id="sel_device">
+								<option value="" selected disabled>Select Device</option>
+							</select>
+						</div>
+					</div>
+					<br />
+					<div class="lower">
+						<div class="left">
+							<a onclick="step_process(3, 2, 'desc')" class="btn"><span>Prev</span></a>
+						</div>
+						<div class="right">
+							<button type="submit"  class="btn"><span>Next</span></button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="block" id="block4">
+			<form method="post" id="tc_select_form">
+				{% csrf_token %}
+				<div class="wrap">
+					<h2>Select Test Cases</h2>
+					<p class="content-summary">Select the testcases that you want to include in the test run. You can select the testcases by clicking the checkbox on the right side.</p>
+					<div class="error-msg" id="tc-error"></div>
+					<div class="tc-list" align="center" id="sel_tc">
+						<ul></ul>
+					</div>
+					<br />
+					<div class="lower">
+						<div class="left">
+							<a onclick="step_process(4, 3, 'desc')" class="btn"><span>Prev</span></a>
+						</div>
+						<div class="right">
+							<button type="submit" class="btn"><span>Next</span></button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="block" id="block5">
+			<form method="post" id="suite_valid_form">
+				{% csrf_token %}
+				<div class="wrap">
+					<input type="hidden" name="suite_validation" value="suite_validation" />
+					<h2>Summary</h2>
+					<p class="content-summary">Verify and confirm your selections. Click on finish button start the test suite running. Go to "Track Test" to view test suite running status.</p>
+					<div class="cofirm-content">
+						<ul class="timeline">
+							<li class="timeline">
+								<div class="icon done"></div>
+								<details class="panel">
+									<summary>Project</summary>
+									<p class="selection-details" id="project-selection">Project name goes here</p>
+								</details>
+							</li>
+							<li class="timeline">
+								<div class="icon done"></div>
+								<details class="panel">
+									<summary>Device ID</summary>
+									<p class="selection-details" id="device-selection">Device ID goes here</p>
+								</details>
+							</li>
+							<li class="timeline">
+								<div class="icon done"></div>
+								<details class="panel">
+									<summary>Selected Test cases</summary>
+									<ul id="tc-selection">
+										<li>
+											<p class="selection-details">Selected Test cases goes here</p>
+										</li>
+									</ul>
+								</details>
+							</li>
+						</ul>
+					</div>
+					<br />
+					<div class="lower">
+						<div class="left">
+							<a onclick="step_process(5, 4, 'desc')" class="btn"><span>Prev</span></a>
+						</div>
+						<div class="right">
+							<button type='submit' class="btn"><span>Finish</span></button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<br class="clear" />
+</div>
+{% endblock %}

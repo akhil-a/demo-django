@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div align="center">
+    <form action="/final-run/" method="post">{% csrf_token %}
+        <div class="select">
+            <select name="dev_id_selection">
+                <option selected="selected" disabled>Select Device ID</option>
+                {% for dev_id in dev_id_list %}
+                <option value="{{ dev_id }}">{{ dev_id }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    <!--    <input type="submit" value="Next">-->
+        <button class="btn" type="submit"><span>Next</span></button>
+    </form>
+</div>
+{% endblock %}

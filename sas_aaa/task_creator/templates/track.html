@@ -1,0 +1,14 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div class="heading">
+    <h1>Track Test Run</h1>
+</div>
+<div class="test-id">
+    <ul>
+        {% for test_id in test_id_list reversed %}
+        <li><a href="/track-test/{{test_id}}"><span class="fa fa-check-circle"></span>{{test_id}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
