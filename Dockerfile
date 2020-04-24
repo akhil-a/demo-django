@@ -14,5 +14,4 @@ RUN apk add --no-cache --virtual .build-deps build-base linux-headers \
 RUN mkdir /app
 WORKDIR /app
 copy ./app /app
-#RUN pip install  psycopg2
 
